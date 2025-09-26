@@ -1,21 +1,17 @@
 import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { cloudflare } from "@cloudflare/vite-plugin";
 
+// Removido o plugin da Cloudflare para simplificar
 export default defineConfig({
-  // ADICIONE ESTA LINHA:
-  base: "/portfolio-victoroliveira/", 
+  // Esta linha é a mais importante de todas.
+  // Ela diz ao Vite para montar os caminhos dos arquivos corretamente para o GitHub Pages.
+  base: "/portfolio-victoroliveira/",
 
-  plugins: [react(), cloudflare()],
-  server: {
-    allowedHosts: true,
-  },
+  plugins: [react()],
   build: {
-    chunkSizeWarningLimit: 5000,
-    rollupOptions: {
-      external: ["__STATIC_CONTENT_MANIFEST"],
-    },
+    // Não precisamos das configurações do rollup para este deploy
+    chunkSizeWarningLimit: 1600,
   },
   resolve: {
     alias: {
